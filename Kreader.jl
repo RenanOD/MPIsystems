@@ -33,8 +33,13 @@ end
 function assembleK1(iter)
   (rho, delta, H, J, Z, X, rhs) = read_blocks(iter)
   (m, n) = size(J)
-  K = J*(H + rho*sparse(Matrix(1.0I, n, n)) + #...))*A' - sparse(Matrix(1.0I, m, m))
-  # ...
+  K = J*( sparse(inv(Matrix(H + rho*sparse(Matrix(1.0I, n, n)) + Z'*(X \ Z))))) *J' + delta*sparse(Matrix(1.0I, m, m))
+  ns = size(Z, 1)       # number of slack variables
+  nn = size(H, 1) - ns  # number of original variables
+  rhs[end-ns+1:end] = Z[:, nn+1:end] * rhs[end-ns+1:end]
+  rhs = rhs[1:nn+ns+m]
+  rhs = rhs[1:size(X)[1]] + J* sparse(inv(Matrix(H + rho*sparse(Matrix(1.0I, n, n)) + Z'*(X \ Z))))*rhs[size(X)[1]+1:end]
+  return K
 end
 
 # Assemble
