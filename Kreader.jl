@@ -18,7 +18,7 @@ function read_blocks(iter)
   X = MatrixMarket.mmread(@sprintf("S_%d.mtx", iter))
   # trabalhar com x em vez de X
   rhs = readdlm(@sprintf("rhs_%d.rhs", iter))
-  
+
   return rho, delta, H, J, Z, X, rhs
 end
 
@@ -30,38 +30,57 @@ end
 # rhs is the right hand side of the system
 # rho and delta are constants designed to improve the system's stability
 
-function assembleK1(iter)
+# Assemble
+# K1 = -[J*(H + rho*I + X^{-1} Z)^{-1}*J' + delta*I]
+# and return corresponding right hand side rhs.
+
+function assembleK1(iter, quadratic = false)
   (rho, delta, H, J, Z, X, rhs) = read_blocks(iter)
   (m, n) = size(J)
-  K = J*( sparse(inv(Matrix(H + rho*sparse(Matrix(1.0I, n, n)) + Z'*(X \ Z))))) *J' + delta*sparse(Matrix(1.0I, m, m))
+  if quadratic
+    K = -(J*( sparse(inv(Matrix(H + tril(H,-1)' + Z'*(X \ Z))))) *J' + delta*sparse(Matrix(1.0I, m, m)))
+  else
+    K = -(J*( sparse(inv(Matrix(rho*sparse(Matrix(1.0I, n, n)) + Z'*(X \ Z))))) *J' + delta*sparse(Matrix(1.0I, m, m)))
+  end
   ns = size(Z, 1)       # number of slack variables
   nn = size(H, 1) - ns  # number of original variables
-  rhs[end-ns+1:end] = Z[:, nn+1:end] * rhs[end-ns+1:end]
+  rhs[1:nn+ns] = rhs[1:nn+ns] - Z' * (X \ rhs[nn+ns+m+1:nn+ns+m+ns])
   rhs = rhs[1:nn+ns+m]
-  rhs = rhs[1:size(X)[1]] + J* sparse(inv(Matrix(H + rho*sparse(Matrix(1.0I, n, n)) + Z'*(X \ Z))))*rhs[size(X)[1]+1:end]
-  return K
+  sl = length(rhs) - size(X)[1]
+  if quadratic
+    rhs = rhs[sl:end] - J* sparse(inv(Matrix(H + tril(H,-1)' + Z'*(X \ Z))))*rhs[1:sl-1]
+  else
+    rhs = rhs[sl:end] - J* sparse(inv(Matrix(rho*sparse(Matrix(1.0I, n, n)) + Z'*(X \ Z))))*rhs[1:sl-1]
+  end
+  return K, rhs
 end
+
 
 # Assemble
 # K2 = [ H + rho*I + X^{-1} Z     J'     ]
 #      [         J              -delta*I ]
 # and return corresponding right hand side rhs.
 
-function assembleK2(iter)
+function assembleK2(iter, quadratic = false)
   (rho, delta, H, J, Z, X, rhs) = read_blocks(iter)
 
   (m, n) = size(J)
   ns = size(Z, 1)      # number of slack variables
-  n = size(H, 1) - ns  # number of original variables
-  K = [ H + tril(H,-1)' + Z' * (X \ Z)       J';
-        J  -delta * sparse(Matrix(1.0I, m, m)) ]
-
+  nn = size(H, 1) - ns  # number of original variables
+  if quadratic
+    K = [ H + tril(H,-1)' + Z' * (X \ Z)       J';
+          J  -delta * sparse(Matrix(1.0I, m, m)) ]
+  else
+    K = [ rho*sparse(Matrix(1.0I, n, n)) + Z' * (X \ Z)    J';
+          J              -delta * sparse(Matrix(1.0I, m, m)) ]
+  end
   # reducing the rhs:
-  rhs[1:n+ns] = rhs[1:n+ns] - Z' * (X \ rhs[n+ns+m+1:n+ns+m+ns])
-  rhs = rhs[1:n+ns+m]
+  rhs[1:nn+ns] = rhs[1:nn+ns] - Z' * (X \ rhs[nn+ns+m+1:nn+ns+m+ns])
+  rhs = rhs[1:nn+ns+m]
 
   return K, rhs
 end
+
 
 # Assemble
 #      [ H + rho*I     J'    -I ]
@@ -70,7 +89,6 @@ end
 # and return corresponding right hand side rhs.
 
 function assembleK3(iter)
-
   II = Z'
   II[findall(II .> 0)] .= 1.0
 
@@ -86,5 +104,3 @@ function assembleK3(iter)
 
   return K, rhs
 end
-
-
