@@ -46,15 +46,21 @@ function assembleK1(iter, quadratic = false)
   nn = size(H, 1) - ns  # number of original variables
   rhs[1:nn+ns] = rhs[1:nn+ns] - Z' * (X \ rhs[nn+ns+m+1:nn+ns+m+ns])
   rhs = rhs[1:nn+ns+m]
-  sl = length(rhs) - size(X)[1]
   if quadratic
-    rhs = rhs[sl:end] - J* sparse(inv(Matrix(H + tril(H,-1)' + Z'*(X \ Z))))*rhs[1:sl-1]
+    temp = J*sparse(inv(Matrix(H + tril(H,-1)' + Z'*(X \ Z))))
   else
-    rhs = rhs[sl:end] - J* sparse(inv(Matrix(rho*sparse(Matrix(1.0I, n, n)) + Z'*(X \ Z))))*rhs[1:sl-1]
+    temp = J*sparse(inv(Matrix(rho*sparse(Matrix(1.0I, n, n)) + Z'*(X \ Z))))
   end
+  sl = size(temp)[2]
+  rhs = rhs[sl+1:end] - temp*rhs[1:sl]
   return K, rhs
 end
 
+# tentar usar isso para deixar de usar a matriz com rho e ver se volta a funcionar!
+# teste = Z'*(X \ Z)
+# for i in 1:length(teste.nzval)
+#    teste.nzval[i] = 1/teste.nzval[i]
+#end
 
 # Assemble
 # K2 = [ H + rho*I + X^{-1} Z     J'     ]
