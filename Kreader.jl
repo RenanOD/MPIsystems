@@ -38,9 +38,9 @@ function assembleK1(iter, quadratic = false)
   (rho, delta, H, J, Z, X, rhs) = read_blocks(iter)
   (m, n) = size(J)
   if quadratic
-    K = -(J*( sparse(inv(Matrix(H + tril(H,-1)' + Z'*(X \ Z))))) *J' + delta*sparse(Matrix(1.0I, m, m)))
+    K = (J*( sparse(inv(Matrix(H + tril(H,-1)' + Z'*(X \ Z))))) *J' + delta*sparse(Matrix(1.0I, m, m)))
   else
-    K = -(J*( sparse(inv(Matrix(rho*sparse(Matrix(1.0I, n, n)) + Z'*(X \ Z))))) *J' + delta*sparse(Matrix(1.0I, m, m)))
+    K = J*( sparse(inv(Matrix(rho*sparse(Matrix(1.0I, n, n)) + Z'*(X \ Z))))) *J'
   end
   ns = size(Z, 1)       # number of slack variables
   nn = size(H, 1) - ns  # number of original variables
@@ -52,7 +52,7 @@ function assembleK1(iter, quadratic = false)
     temp = J*sparse(inv(Matrix(rho*sparse(Matrix(1.0I, n, n)) + Z'*(X \ Z))))
   end
   sl = size(temp)[2]
-  rhs = rhs[sl+1:end] - temp*rhs[1:sl]
+  rhs = -(rhs[sl+1:end] - temp*rhs[1:sl])
   return K, rhs
 end
 
@@ -78,7 +78,7 @@ function assembleK2(iter, quadratic = false)
           J  -delta * sparse(Matrix(1.0I, m, m)) ]
   else
     K = [ rho*sparse(Matrix(1.0I, n, n)) + Z' * (X \ Z)    J';
-          J              -delta * sparse(Matrix(1.0I, m, m)) ]
+          J                              sparse(zeros(m, m)) ]
   end
   # reducing the rhs:
   rhs[1:nn+ns] = rhs[1:nn+ns] - Z' * (X \ rhs[nn+ns+m+1:nn+ns+m+ns])
@@ -89,24 +89,26 @@ end
 
 
 # Assemble
-#      [ H + rho*I     J'    -I ]
-# K3 = [     J     -delta*I     ]
-#      [     Z                X ]
+#        [ H + rho*I     J'    -Z^{1/2}' ]
+# K3.5 = [     J     -delta*I           ]
+#        [ -Z^{1/2}               -X    ]
 # and return corresponding right hand side rhs.
 
-function assembleK3(iter)
-  II = Z'
-  II[findall(II .> 0)] .= 1.0
+function assembleK35(iter, quadratic = false)
+  (rho, delta, H, J, Z, X, rhs) = read_blocks(iter)
 
   (m, n) = size(J)
   ns = size(Z, 1);      # number of slack variables.
-  n = size(H, 1) - ns;  # number of original variables.
 
-  K = [ H + tril(H,-1)'      J'                -II            ;
-        J  -delta * sparse(Matrix(1.0I, m, m))  spzeros(m, ns);
-        Z.^2                 spzeros(ns, m)      X            ]
-
-  rhs[end-ns+1:end] = Z[:, n+1:end] * rhs[end-ns+1:end]
+  if quadratic
+    K = [ H + tril(H,-1)'      J'                -Z'            ;
+          J  -delta * sparse(Matrix(1.0I, m, m))  spzeros(m, ns);
+          -Z                 spzeros(ns, m)      -X            ]
+  else
+    K = [ rho*sparse(Matrix(1.0I, n, n))      J'        -Z'     ;
+          J           spzeros(m, m)               spzeros(m, ns);
+          -Z          spzeros(ns, m)      -X            ]
+  end
 
   return K, rhs
 end
