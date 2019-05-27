@@ -29,7 +29,7 @@ end
 # rho and delta are constants designed to improve the system's stability
 
 # Assemble
-# K1 = -[J*(H + rho*I + X^{-1} Z)^{-1}*J' + delta*I]
+# K1 = [J*(H + rho*I + X^{-1} Z)^{-1}*J' + delta*I]
 # and return corresponding right hand side rhs.
 
 function assembleK1(iter, quadratic = false)
@@ -49,14 +49,11 @@ function assembleK1(iter, quadratic = false)
   nn = size(H, 1) - ns  # number of original variables
   rhs[1:nn+ns] = rhs[1:nn+ns] - Z' * (X \ rhs[nn+ns+m+1:nn+ns+m+ns])
   rhs = rhs[1:nn+ns+m]
-  if quadratic
-    temp2 = J*temp21
-  else
-    temp2 = J*temp21
-  end
+  quadratic ? temp2 = J*temp21 : temp2 = J*temp21
   sl = size(temp2)[2]
+  rhsdx1 = rhs[sl+1:end]
   rhs = -(rhs[sl+1:end] - temp2*rhs[1:sl])
-  return K, rhs
+  return K, rhs, rhsdx1, J
 end
 
 # Assemble

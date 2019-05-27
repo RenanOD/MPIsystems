@@ -1,0 +1,123 @@
+K35 size: 4873 rows, 4873 cols, 16965 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(9.237 ms)
+  K2 ldlt             = TrialEstimate(9.051 ms)
+K35 size: 4873 rows, 4873 cols, 16965 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(9.252 ms)
+  K2 ldlt             = TrialEstimate(8.978 ms)
+K35 size: 16492 rows, 16492 cols, 47949 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(20.996 ms)
+  K2 ldlt             = TrialEstimate(15.562 ms)
+K35 size: 16492 rows, 16492 cols, 47949 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(20.795 ms)
+  K2 ldlt             = TrialEstimate(15.252 ms)
+K35 size: 596 rows, 596 cols, 1615 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(154.708 μs)
+  K2 ldlt             = TrialEstimate(201.455 μs)
+K35 size: 673 rows, 673 cols, 1824 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(157.333 μs)
+  K2 ldlt             = TrialEstimate(221.430 μs)
+K35 size: 778 rows, 778 cols, 2109 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(179.111 μs)
+  K2 ldlt             = TrialEstimate(253.093 μs)
+K35 size: 526 rows, 526 cols, 1425 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(143.072 μs)
+  K2 ldlt             = TrialEstimate(174.220 μs)
+K35 size: 706 rows, 706 cols, 5307 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(5.538 ms)
+  K2 ldlt             = TrialEstimate(477.612 μs)
+K35 size: 4873 rows, 4873 cols, 16965 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(9.196 ms)
+  K2 ldlt             = TrialEstimate(9.075 ms)
+K35 size: 4873 rows, 4873 cols, 16965 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(9.173 ms)
+  K2 ldlt             = TrialEstimate(8.682 ms)
+K35 size: 16492 rows, 16492 cols, 47949 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(20.837 ms)
+  K2 ldlt             = TrialEstimate(14.903 ms)
+K35 size: 16492 rows, 16492 cols, 47949 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(20.859 ms)
+  K2 ldlt             = TrialEstimate(15.404 ms)
+K35 size: 18 rows, 18 cols, 58 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(53.594 μs)
+  K2 ldlt             = TrialEstimate(26.874 μs)
+K35 size: 5242 rows, 5242 cols, 13977 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(1.154 ms)
+  K2 ldlt             = TrialEstimate(1.697 ms)
+K35 size: 5242 rows, 5242 cols, 13977 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(1.186 ms)
+  K2 ldlt             = TrialEstimate(1.643 ms)
+K35 size: 192 rows, 192 cols, 555 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(116.919 μs)
+  K2 ldlt             = TrialEstimate(86.338 μs)
+K35 size: 17 rows, 17 cols, 44 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(49.990 μs)
+  K2 ldlt             = TrialEstimate(22.859 μs)
+K35 size: 34 rows, 34 cols, 81 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(53.491 μs)
+  K2 ldlt             = TrialEstimate(25.742 μs)
+K35 size: 20 rows, 20 cols, 85 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(52.256 μs)
+  K2 ldlt             = TrialEstimate(29.088 μs)
+K35 size: 15 rows, 15 cols, 39 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(49.990 μs)
+  K2 ldlt             = TrialEstimate(19.512 μs)
+K35 size: 12 rows, 12 cols, 31 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(49.527 μs)
+  K2 ldlt             = TrialEstimate(20.542 μs)
+K35 size: 8 rows, 8 cols, 19 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(48.498 μs)
+  K2 ldlt             = TrialEstimate(20.130 μs)
+K35 size: 8 rows, 8 cols, 19 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(47.828 μs)
+  K2 ldlt             = TrialEstimate(20.748 μs)
+K35 size: 38 rows, 38 cols, 99 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(59.515 μs)
+  K2 ldlt             = TrialEstimate(29.912 μs)
+K35 size: 25 rows, 25 cols, 74 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(52.873 μs)
+  K2 ldlt             = TrialEstimate(25.536 μs)
+K35 size: 12100 rows, 12100 cols, 33544 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(4.197 ms)
+  K2 ldlt             = TrialEstimate(5.890 ms)
+K35 size: 5400 rows, 5400 cols, 17560 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(3.023 ms)
+  K2 ldlt             = TrialEstimate(4.108 ms)
+K35 size: 583 rows, 583 cols, 12473 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(1.549 ms)
+  K2 ldlt             = TrialEstimate(2.996 ms)
+K35 size: 940 rows, 940 cols, 17317 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(1.909 ms)
+  K2 ldlt             = TrialEstimate(4.725 ms)
+K35 size: 1081 rows, 1081 cols, 44513 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(2.786 ms)
+  K2 ldlt             = TrialEstimate(18.328 ms)
+K35 size: 1717 rows, 1717 cols, 34009 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(2.054 ms)
+  K2 ldlt             = TrialEstimate(16.077 ms)
+K35 size: 902 rows, 902 cols, 6144 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(455.886 μs)
+  K2 ldlt             = TrialEstimate(588.559 μs)
+K35 size: 939 rows, 939 cols, 5339 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(394.415 μs)
+  K2 ldlt             = TrialEstimate(527.448 μs)
+K35 size: 1145 rows, 1145 cols, 7151 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(521.734 μs)
+  K2 ldlt             = TrialEstimate(683.031 μs)
+K35 size: 2053 rows, 2053 cols, 12912 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(954.452 μs)
+  K2 ldlt             = TrialEstimate(1.201 ms)
+K35 size: 1281 rows, 1281 cols, 5371 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(1.182 ms)
+  K2 ldlt             = TrialEstimate(883.302 μs)
+K35 size: 20 rows, 20 cols, 85 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(53.028 μs)
+  K2 ldlt             = TrialEstimate(28.162 μs)
+K35 size: 9 rows, 9 cols, 22 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(50.505 μs)
+  K2 ldlt             = TrialEstimate(20.490 μs)
+K35 size: 8005 rows, 8005 cols, 26010 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(1.852 ms)
+  K2 ldlt             = TrialEstimate(3.042 ms)
+K35 size: 20 rows, 20 cols, 54 NNZ's K1/K2: 
+  K1 cholesky         = TrialEstimate(53.080 μs)
+  K2 ldlt             = TrialEstimate(25.433 μs)
