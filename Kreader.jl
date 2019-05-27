@@ -14,9 +14,7 @@ function read_blocks(iter)
   H = -H
   J = MatrixMarket.mmread(@sprintf("J1J2_%d.mtx", iter))
   Z = MatrixMarket.mmread(@sprintf("Zsqrt_%d.mtx", iter))
-  # trabalhar com z em vez de Z
   X = MatrixMarket.mmread(@sprintf("S_%d.mtx", iter))
-  # trabalhar com x em vez de X
   rhs = readdlm(@sprintf("rhs_%d.rhs", iter))
 
   return rho, delta, H, J, Z, X, rhs
@@ -37,30 +35,29 @@ end
 function assembleK1(iter, quadratic = false)
   (rho, delta, H, J, Z, X, rhs) = read_blocks(iter)
   (m, n) = size(J)
+  invXZ = spdiagm(0 => [zeros(Z.n-Z.m); (Z.nzval.^2)./X.nzval])
+  quadratic ? temp21 = H + tril(H,-1)' + invXZ : temp21 = rho*sparse(Matrix(1.0I, n, n)) + invXZ
+  for i in 1:length(temp21.nzval)
+    temp21.nzval[i] = 1/temp21.nzval[i]
+  end
   if quadratic
-    K = (J*( sparse(inv(Matrix(H + tril(H,-1)' + Z'*(X \ Z))))) *J' + delta*sparse(Matrix(1.0I, m, m)))
+    K = J*temp21*J' + delta*sparse(Matrix(1.0I, m, m))
   else
-    K = J*( sparse(inv(Matrix(rho*sparse(Matrix(1.0I, n, n)) + Z'*(X \ Z))))) *J'
+    K = J*temp21*J'
   end
   ns = size(Z, 1)       # number of slack variables
   nn = size(H, 1) - ns  # number of original variables
   rhs[1:nn+ns] = rhs[1:nn+ns] - Z' * (X \ rhs[nn+ns+m+1:nn+ns+m+ns])
   rhs = rhs[1:nn+ns+m]
   if quadratic
-    temp = J*sparse(inv(Matrix(H + tril(H,-1)' + Z'*(X \ Z))))
+    temp2 = J*temp21
   else
-    temp = J*sparse(inv(Matrix(rho*sparse(Matrix(1.0I, n, n)) + Z'*(X \ Z))))
+    temp2 = J*temp21
   end
-  sl = size(temp)[2]
-  rhs = -(rhs[sl+1:end] - temp*rhs[1:sl])
+  sl = size(temp2)[2]
+  rhs = -(rhs[sl+1:end] - temp2*rhs[1:sl])
   return K, rhs
 end
-
-# tentar usar isso para deixar de usar a matriz com rho e ver se volta a funcionar!
-# teste = Z'*(X \ Z)
-# for i in 1:length(teste.nzval)
-#    teste.nzval[i] = 1/teste.nzval[i]
-#end
 
 # Assemble
 # K2 = [ H + rho*I + X^{-1} Z     J'     ]
@@ -73,11 +70,12 @@ function assembleK2(iter, quadratic = false)
   (m, n) = size(J)
   ns = size(Z, 1)      # number of slack variables
   nn = size(H, 1) - ns  # number of original variables
+  invXZ = spdiagm(0 => [zeros(Z.n-Z.m); (Z.nzval.^2)./X.nzval])
   if quadratic
-    K = [ H + tril(H,-1)' + Z' * (X \ Z)       J';
+    K = [ H + tril(H,-1)' + invXZ       J';
           J  -delta * sparse(Matrix(1.0I, m, m)) ]
   else
-    K = [ rho*sparse(Matrix(1.0I, n, n)) + Z' * (X \ Z)    J';
+    K = [ rho*sparse(Matrix(1.0I, n, n)) + invXZ    J';
           J                              sparse(zeros(m, m)) ]
   end
   # reducing the rhs:
@@ -90,8 +88,8 @@ end
 
 # Assemble
 #        [ H + rho*I     J'    -Z^{1/2}' ]
-# K3.5 = [     J     -delta*I           ]
-#        [ -Z^{1/2}               -X    ]
+# K3.5 = [     J     -delta*I            ]
+#        [ -Z^{1/2}               -X     ]
 # and return corresponding right hand side rhs.
 
 function assembleK35(iter, quadratic = false)
