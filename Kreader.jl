@@ -36,24 +36,25 @@ function assembleK1(iter, quadratic = false)
   (rho, delta, H, J, Z, X, rhs) = read_blocks(iter)
   (m, n) = size(J)
   invXZ = spdiagm(0 => [zeros(Z.n-Z.m); (Z.nzval.^2)./X.nzval])
-  quadratic ? temp21 = H + tril(H,-1)' + invXZ : temp21 = rho*sparse(Matrix(1.0I, n, n)) + invXZ
-  for i in 1:length(temp21.nzval)
-    temp21.nzval[i] = 1/temp21.nzval[i]
+  quadratic ? temp2 = H + tril(H,-1)' + invXZ : temp2 = rho*sparse(Matrix(1.0I, n, n)) + invXZ
+  diagD = collect(temp2.nzval)
+  for i in 1:length(temp2.nzval)
+    temp2.nzval[i] = 1/temp2.nzval[i]
   end
   if quadratic
-    K = J*temp21*J' + delta*sparse(Matrix(1.0I, m, m))
+    K = J*temp2*J' + delta*sparse(Matrix(1.0I, m, m))
   else
-    K = J*temp21*J'
+    K = J*temp2*J'
   end
   ns = size(Z, 1)       # number of slack variables
   nn = size(H, 1) - ns  # number of original variables
   rhs[1:nn+ns] = rhs[1:nn+ns] - Z' * (X \ rhs[nn+ns+m+1:nn+ns+m+ns])
   rhs = rhs[1:nn+ns+m]
-  quadratic ? temp2 = J*temp21 : temp2 = J*temp21
+  quadratic ? temp2 = J*temp2 : temp2 = J*temp2
   sl = size(temp2)[2]
-  rhsdx1 = rhs[sl+1:end]
+  rhsdx1 = rhs[1:sl]
   rhs = -(rhs[sl+1:end] - temp2*rhs[1:sl])
-  return K, rhs, rhsdx1, J
+  return K, rhs, rhsdx1, J', diagD
 end
 
 # Assemble

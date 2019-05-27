@@ -80,7 +80,7 @@ problems = [
   "primalc8";
   #"qpcblend";
   #"qpcboei1";
-  "qpcboei2";
+  #"qpcboei2";
   #"qpcstair";
   "s268";
   "stcqp1";
@@ -95,7 +95,7 @@ notbig = []
 for (i, p) in enumerate(problems)
   cd("data/$p/3x3/iter_$iter")
   (rho, delta, H, J, Z, X, rhs) = read_blocks(iter)
-  if size(J,2) < 8000
+  if size(J,2) < 10000
     push!(notbig, i)
   end
   for i in 1:4
@@ -103,47 +103,61 @@ for (i, p) in enumerate(problems)
   end
 end
 
-function solveK1(K1, rhs1, rhsdx1, J)
+function solveK1(K1, rhs1, rhsdx1, Jt, diagD)
   F = cholesky(K1)
   dy1 = F\rhs1
-  dx1 = J\(rhsdx1)
-
+  dx1 = -(Jt*dy1 - rhsdx1)./diagD
   return dx1, dy1
 end
 
 function solveK2(K2, rhs2)
   F = ldlt(K2)
   dxy = F\rhs2
-
   return dxy
+end
+
+function solveK35(K35, rhs35)
+  F = ldlt(K35)
+  sol35 = F\rhs35
+  return sol35
 end
 
 @testset "Testing benchmark problems" begin
   open("benchmark.log", "w") do logfile
+
     i = 0
     for p in problems[notbig]
       i+=1
       println("Problem $i")
       iter = 0
+
+      # Building the systems
+
       cd("data/$p/3x3/iter_$iter")
-      K1, rhs1, rhsdx1, J = assembleK1(iter)
+      K1, rhs1, rhsdx1, J, diagD = assembleK1(iter)
       K2, rhs2 = assembleK2(iter)
       K35, rhs35 = assembleK35(iter)
       for i in 1:4
         cd("..")
       end
 
-     sol35 = K35\rhs35
+      # Benchmarking
 
-      benchmarkK1 = @benchmark solveK1($K1, $rhs1, $rhsdx1, $J)     samples=10 evals=1
-      benchmarkK2 = @benchmark solveK2($K2, $rhs2)                          samples=10 evals=1
+      benchmarkK1  = @benchmark solveK1($K1, $rhs1, $rhsdx1, $J, $diagD)     samples=20 evals=10
+      benchmarkK2  = @benchmark solveK2($K2, $rhs2)                          samples=20 evals=10
+      benchmarkK35 = @benchmark solveK35($K35, $rhs35)                       samples=20 evals=10
       println(logfile, "K35 size: $(size(K35)[1]) rows, $(size(K35)[2]) cols, $(nnz(K35)) NNZ's K1/K2: ")
       println(logfile, "  K1 cholesky         = $(median(benchmarkK1))")
-      println(logfile, "  K2 ldlt             = $(median(benchmarkK2))")
+      println(logfile, "  K2  ldlt            = $(median(benchmarkK2))")
+      println(logfile, "  K35 ldlt            = $(median(benchmarkK35))")
 
-      dx1, dy1 = solveK1(K1, rhs1, rhsdx1, J)
+      # Testing if all assembles and solutions are correct
+
+      sol35 = K35\rhs35
+
+      dx1, dy1 = solveK1(K1, rhs1, rhsdx1, J, diagD)
       dxy = solveK2(K2, rhs2)
-    
+
       dy2 = dxy[end-size(K1)[1]+1:end]
       dy35 = sol35[size(K2)[1]-size(K1)[1]+1:size(K2)[1]]
 
@@ -152,7 +166,7 @@ end
 
       @test norm(dy1 - dy35) < 1e-4
       @test norm(dy2 - dy35) < 1e-4
-      #@test norm(dx1 - dx35) < 1e-4
+      @test norm(dx1 - dx35) < 1e-4
       @test norm(dx2 - dx35) < 1e-4
     end
   end
