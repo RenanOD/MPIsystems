@@ -50,10 +50,8 @@ function assembleK1(iter, quadratic = false)
   nn = size(H, 1) - ns  # number of original variables
   rhs[1:nn+ns] = rhs[1:nn+ns] - Z' * (X \ rhs[nn+ns+m+1:nn+ns+m+ns])
   rhs = rhs[1:nn+ns+m]
-  quadratic ? temp2 = J*temp2 : temp2 = J*temp2
-  sl = size(temp2)[2]
-  rhsdx1 = rhs[1:sl]
-  rhs = -(rhs[sl+1:end] - temp2*rhs[1:sl])
+  rhsdx1 = rhs[1:size(temp2)[2]]
+  rhs = -(rhs[size(temp2)[2]+1:end] - J*temp2*rhs[1:size(temp2)[2]])
   return K, rhs, rhsdx1, J', diagD
 end
 

@@ -1,4 +1,4 @@
-using Test, BenchmarkTools, Statistics
+using Test, BenchmarkTools, Statistics, LDLFactorizations
 
 include("Kreader.jl")
 
@@ -105,7 +105,7 @@ end
 
 function solveK1(K1, rhs1, rhsdx1, Jt, diagD)
   F = cholesky(K1)
-  dy1 = F\rhs1
+  dy1 = K1\rhs1
   dx1 = -(Jt*dy1 - rhsdx1)./diagD
   return dx1, dy1
 end
@@ -143,9 +143,9 @@ end
 
       # Benchmarking
 
-      benchmarkK1  = @benchmark solveK1($K1, $rhs1, $rhsdx1, $J, $diagD)     samples=20 evals=10
-      benchmarkK2  = @benchmark solveK2($K2, $rhs2)                          samples=20 evals=10
-      benchmarkK35 = @benchmark solveK35($K35, $rhs35)                       samples=20 evals=10
+      benchmarkK1  = @benchmark solveK1($K1, $rhs1, $rhsdx1, $J, $diagD)     samples=1 evals=1
+      benchmarkK2  = @benchmark solveK2($K2, $rhs2)                          samples=1 evals=1
+      benchmarkK35 = @benchmark solveK35($K35, $rhs35)                       samples=1 evals=1
       println(logfile, "K35 size: $(size(K35)[1]) rows, $(size(K35)[2]) cols, $(nnz(K35)) NNZ's K1/K2: ")
       println(logfile, "  K1 cholesky         = $(median(benchmarkK1))")
       println(logfile, "  K2  ldlt            = $(median(benchmarkK2))")
