@@ -1,160 +1,81 @@
-K35 size: 4873 rows, 4873 cols, 16965 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(16.757 ms)
-  K2  ldlt            = TrialEstimate(7.713 ms)
-  K35 ldlt            = TrialEstimate(7.790 ms)
-K35 size: 4873 rows, 4873 cols, 16965 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(16.584 ms)
-  K2  ldlt            = TrialEstimate(7.757 ms)
-  K35 ldlt            = TrialEstimate(8.148 ms)
-K35 size: 16492 rows, 16492 cols, 47949 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(35.638 ms)
-  K2  ldlt            = TrialEstimate(13.697 ms)
-  K35 ldlt            = TrialEstimate(15.898 ms)
-K35 size: 16492 rows, 16492 cols, 47949 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(35.445 ms)
-  K2  ldlt            = TrialEstimate(13.223 ms)
-  K35 ldlt            = TrialEstimate(15.808 ms)
-K35 size: 596 rows, 596 cols, 1615 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(194.606 μs)
-  K2  ldlt            = TrialEstimate(246.810 μs)
-  K35 ldlt            = TrialEstimate(316.002 μs)
-K35 size: 673 rows, 673 cols, 1824 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(207.580 μs)
-  K2  ldlt            = TrialEstimate(268.742 μs)
-  K35 ldlt            = TrialEstimate(448.520 μs)
-K35 size: 778 rows, 778 cols, 2109 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(234.453 μs)
-  K2  ldlt            = TrialEstimate(299.013 μs)
-  K35 ldlt            = TrialEstimate(400.641 μs)
-K35 size: 526 rows, 526 cols, 1425 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(205.417 μs)
-  K2  ldlt            = TrialEstimate(267.506 μs)
-  K35 ldlt            = TrialEstimate(327.432 μs)
-K35 size: 706 rows, 706 cols, 5307 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(9.356 ms)
-  K2  ldlt            = TrialEstimate(449.447 μs)
-  K35 ldlt            = TrialEstimate(555.708 μs)
-K35 size: 4873 rows, 4873 cols, 16965 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(16.641 ms)
-  K2  ldlt            = TrialEstimate(9.998 ms)
-  K35 ldlt            = TrialEstimate(7.884 ms)
-K35 size: 4873 rows, 4873 cols, 16965 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(16.571 ms)
-  K2  ldlt            = TrialEstimate(8.132 ms)
-  K35 ldlt            = TrialEstimate(8.118 ms)
-K35 size: 16492 rows, 16492 cols, 47949 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(35.763 ms)
-  K2  ldlt            = TrialEstimate(12.888 ms)
-  K35 ldlt            = TrialEstimate(17.295 ms)
-K35 size: 16492 rows, 16492 cols, 47949 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(36.659 ms)
-  K2  ldlt            = TrialEstimate(12.557 ms)
-  K35 ldlt            = TrialEstimate(16.030 ms)
-K35 size: 18 rows, 18 cols, 58 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(87.109 μs)
-  K2  ldlt            = TrialEstimate(74.136 μs)
-  K35 ldlt            = TrialEstimate(74.444 μs)
-K35 size: 5242 rows, 5242 cols, 13977 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(1.346 ms)
-  K2  ldlt            = TrialEstimate(1.482 ms)
-  K35 ldlt            = TrialEstimate(2.055 ms)
-K35 size: 5242 rows, 5242 cols, 13977 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(1.346 ms)
-  K2  ldlt            = TrialEstimate(1.409 ms)
-  K35 ldlt            = TrialEstimate(2.026 ms)
-K35 size: 192 rows, 192 cols, 555 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(192.444 μs)
-  K2  ldlt            = TrialEstimate(150.434 μs)
-  K35 ldlt            = TrialEstimate(177.925 μs)
-K35 size: 17 rows, 17 cols, 44 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(80.622 μs)
-  K2  ldlt            = TrialEstimate(68.267 μs)
-  K35 ldlt            = TrialEstimate(74.136 μs)
-K35 size: 34 rows, 34 cols, 81 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(91.743 μs)
-  K2  ldlt            = TrialEstimate(74.136 μs)
-  K35 ldlt            = TrialEstimate(95.140 μs)
-K35 size: 20 rows, 20 cols, 85 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(84.329 μs)
-  K2  ldlt            = TrialEstimate(72.282 μs)
-  K35 ldlt            = TrialEstimate(92.361 μs)
-K35 size: 15 rows, 15 cols, 39 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(82.785 μs)
-  K2  ldlt            = TrialEstimate(67.649 μs)
-  K35 ldlt            = TrialEstimate(70.738 μs)
-K35 size: 12 rows, 12 cols, 31 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(76.916 μs)
-  K2  ldlt            = TrialEstimate(71.355 μs)
-  K35 ldlt            = TrialEstimate(70.738 μs)
-K35 size: 8 rows, 8 cols, 19 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(76.606 μs)
-  K2  ldlt            = TrialEstimate(64.559 μs)
-  K35 ldlt            = TrialEstimate(76.606 μs)
-K35 size: 8 rows, 8 cols, 19 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(83.712 μs)
-  K2  ldlt            = TrialEstimate(78.460 μs)
-  K35 ldlt            = TrialEstimate(66.104 μs)
-K35 size: 38 rows, 38 cols, 99 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(93.596 μs)
-  K2  ldlt            = TrialEstimate(90.507 μs)
-  K35 ldlt            = TrialEstimate(89.271 μs)
-K35 size: 25 rows, 25 cols, 74 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(85.873 μs)
-  K2  ldlt            = TrialEstimate(75.371 μs)
-  K35 ldlt            = TrialEstimate(83.403 μs)
-K35 size: 12100 rows, 12100 cols, 33544 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(5.306 ms)
-  K2  ldlt            = TrialEstimate(4.620 ms)
-  K35 ldlt            = TrialEstimate(6.357 ms)
-K35 size: 5400 rows, 5400 cols, 17560 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(4.374 ms)
-  K2  ldlt            = TrialEstimate(3.352 ms)
-  K35 ldlt            = TrialEstimate(4.015 ms)
-K35 size: 583 rows, 583 cols, 12473 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(2.525 ms)
-  K2  ldlt            = TrialEstimate(2.628 ms)
-  K35 ldlt            = TrialEstimate(2.677 ms)
-K35 size: 940 rows, 940 cols, 17317 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(2.884 ms)
-  K2  ldlt            = TrialEstimate(4.163 ms)
-  K35 ldlt            = TrialEstimate(4.401 ms)
-K35 size: 1081 rows, 1081 cols, 44513 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(3.209 ms)
-  K2  ldlt            = TrialEstimate(17.289 ms)
-  K35 ldlt            = TrialEstimate(15.788 ms)
-K35 size: 1717 rows, 1717 cols, 34009 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(2.055 ms)
-  K2  ldlt            = TrialEstimate(14.084 ms)
-  K35 ldlt            = TrialEstimate(15.406 ms)
-K35 size: 902 rows, 902 cols, 6144 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(642.199 μs)
-  K2  ldlt            = TrialEstimate(589.687 μs)
-  K35 ldlt            = TrialEstimate(675.869 μs)
-K35 size: 939 rows, 939 cols, 5339 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(477.248 μs)
-  K2  ldlt            = TrialEstimate(596.791 μs)
-  K35 ldlt            = TrialEstimate(627.063 μs)
-K35 size: 1145 rows, 1145 cols, 7151 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(610.074 μs)
-  K2  ldlt            = TrialEstimate(645.906 μs)
-  K35 ldlt            = TrialEstimate(785.528 μs)
-K35 size: 2053 rows, 2053 cols, 12912 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(1.191 ms)
-  K2  ldlt            = TrialEstimate(1.204 ms)
-  K35 ldlt            = TrialEstimate(1.306 ms)
-K35 size: 20 rows, 20 cols, 85 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(81.858 μs)
-  K2  ldlt            = TrialEstimate(72.282 μs)
-  K35 ldlt            = TrialEstimate(78.151 μs)
-K35 size: 9 rows, 9 cols, 22 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(76.607 μs)
-  K2  ldlt            = TrialEstimate(64.251 μs)
-  K35 ldlt            = TrialEstimate(68.884 μs)
-K35 size: 8005 rows, 8005 cols, 26010 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(2.079 ms)
-  K2  ldlt            = TrialEstimate(2.591 ms)
-  K35 ldlt            = TrialEstimate(3.610 ms)
-K35 size: 20 rows, 20 cols, 54 NNZ's K1/K2: 
-  K1 cholesky         = TrialEstimate(84.638 μs)
-  K2  ldlt            = TrialEstimate(70.429 μs)
-  K35 ldlt            = TrialEstimate(73.518 μs)
+Problema & NNZ & K1 Cholesky & K2 LDL & K35 LDL & K35 LU \\
+ aug3d & 17965 & 6.646 ms & 4.885 ms &
+      5.136 ms & 15.111 ms \\
+ aug3dc & 17965 & 6.618 ms & 4.983 ms &
+      4.893 ms & 13.942 ms \\
+ aug3dcqp & 52822 & 18.729 ms & 9.588 ms &
+      9.653 ms & 34.855 ms \\
+ aug3dqp & 52822 & 18.295 ms & 7.789 ms &
+      9.202 ms & 37.069 ms \\
+ dual1 & 1786 & 94.097 $\\mu$s & 198.731 $\\mu$s &
+      151.759 $\\mu$s & 453.291 $\\mu$s \\
+ dual2 & 2017 & 103.435 $\\mu$s & 168.405 $\\mu$s &
+      172.392 $\\mu$s & 594.072 $\\mu$s \\
+ dual3 & 2332 & 115.580 $\\mu$s & 144.173 $\\mu$s &
+      198.829 $\\mu$s & 904.019 $\\mu$s \\
+ dual4 & 1576 & 109.799 $\\mu$s & 107.150 $\\mu$s &
+      135.715 $\\mu$s & 405.571 $\\mu$s \\
+ dualc1 & 5540 & 5.906 ms & 333.878 $\\mu$s &
+      344.581 $\\mu$s & 942.600 $\\mu$s \\
+ aug3d & 17965 & 6.654 ms & 4.964 ms &
+      5.038 ms & 14.154 ms \\
+ aug3dc & 17965 & 6.712 ms & 4.904 ms &
+      4.859 ms & 14.756 ms \\
+ aug3dcqp & 52822 & 17.528 ms & 7.783 ms &
+      9.453 ms & 35.428 ms \\
+ aug3dqp & 52822 & 17.714 ms & 8.022 ms &
+      9.489 ms & 41.972 ms \\
+ genhs28 & 66 & 18.248 $\\mu$s & 13.928 $\\mu$s &
+      14.167 $\\mu$s & 18.629 $\\mu$s \\
+ gouldqp2 & 15724 & 924.833 $\\mu$s & 1.291 ms &
+      1.659 ms & 4.638 ms \\
+ gouldqp3 & 15724 & 1.458 ms & 1.673 ms &
+      1.614 ms & 4.209 ms \\
+ hs118 & 614 & 76.705 $\\mu$s & 45.497 $\\mu$s &
+      60.631 $\\mu$s & 183.806 $\\mu$s \\
+ hs21 & 49 & 15.845 $\\mu$s & 10.603 $\\mu$s &
+      12.338 $\\mu$s & 17.080 $\\mu$s \\
+ hs21mod & 90 & 18.849 $\\mu$s & 15.450 $\\mu$s &
+      16.783 $\\mu$s & 29.526 $\\mu$s \\
+ hs268 & 90 & 17.418 $\\mu$s & 13.254 $\\mu$s &
+      14.693 $\\mu$s & 23.490 $\\mu$s \\
+ hs35 & 43 & 15.306 $\\mu$s & 10.819 $\\mu$s &
+      12.461 $\\mu$s & 19.849 $\\mu$s \\
+ hs35mod & 34 & 15.058 $\\mu$s & 9.966 $\\mu$s &
+      11.082 $\\mu$s & 12.891 $\\mu$s \\
+ hs51 & 22 & 15.489 $\\mu$s & 10.104 $\\mu$s &
+      9.739 $\\mu$s & 9.865 $\\mu$s \\
+ hs52 & 22 & 15.155 $\\mu$s & 9.843 $\\mu$s &
+      9.920 $\\mu$s & 9.927 $\\mu$s \\
+ hs53 & 112 & 20.063 $\\mu$s & 15.984 $\\mu$s &
+      18.807 $\\mu$s & 55.353 $\\mu$s \\
+ hs76 & 81 & 17.485 $\\mu$s & 12.907 $\\mu$s &
+      15.008 $\\mu$s & 26.365 $\\mu$s \\
+ mosarqp1 & 36744 & 6.622 ms & 3.650 ms &
+      4.657 ms & 20.284 ms \\
+ mosarqp2 & 19060 & 3.595 ms & 2.593 ms &
+      3.150 ms & 12.155 ms \\
+ primal1 & 12559 & 805.624 $\\mu$s & 1.755 ms &
+      1.783 ms & 9.121 ms \\
+ primal2 & 17414 & 952.800 $\\mu$s & 2.738 ms &
+      2.818 ms & 15.222 ms \\
+ primal3 & 44625 & 4.246 ms & 11.112 ms &
+      10.588 ms & 61.912 ms \\
+ primal4 & 34085 & 651.087 $\\mu$s & 9.176 ms &
+      9.145 ms & 50.445 ms \\
+ primalc1 & 6368 & 326.113 $\\mu$s & 321.941 $\\mu$s &
+      383.977 $\\mu$s & 1.136 ms \\
+ primalc2 & 5575 & 285.371 $\\mu$s & 284.986 $\\mu$s &
+      354.697 $\\mu$s & 1.115 ms \\
+ primalc5 & 7437 & 374.308 $\\mu$s & 374.476 $\\mu$s &
+      475.724 $\\mu$s & 1.422 ms \\
+ primalc8 & 13423 & 688.394 $\\mu$s & 677.017 $\\mu$s &
+      958.203 $\\mu$s & 3.550 ms \\
+ s268 & 90 & 17.894 $\\mu$s & 12.968 $\\mu$s &
+      15.045 $\\mu$s & 23.213 $\\mu$s \\
+ tame & 25 & 17.052 $\\mu$s & 10.778 $\\mu$s &
+      11.323 $\\mu$s & 10.976 $\\mu$s \\
+ yao & 28011 & 1.276 ms & 2.272 ms &
+      2.787 ms & 7.303 ms \\
+ zecevic2 & 60 & 18.690 $\\mu$s & 13.026 $\\mu$s &
+      13.313 $\\mu$s & 19.633 $\\mu$s \\

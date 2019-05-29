@@ -122,8 +122,22 @@ function solveK35(K35, rhs35)
   return sol35
 end
 
+function solveK35LU(K35, rhs35)
+  F = lu(K35)
+  sol35 = F\rhs35
+  return sol35
+end
+
+function solveK3(K3, rhs3)
+  F = lu(K3)
+  #sol3 = F\rhs3
+  #return sol3
+end
+
 @testset "Testing benchmark problems" begin
   open("benchmark.log", "w") do logfile
+      println(logfile, "Problema & NNZ & K1 Cholesky & K2 LDL & K35 LDL & K35 LU \\")
+      #println(logfile, "K35 size: $(size(K35)[1]) rows, $(size(K35)[2]) cols, $(nnz(K35)) NNZ's K1/K2: ")
 
     i = 0
     for p in problems[notbig]
@@ -137,19 +151,19 @@ end
       K1, rhs1, rhsdx1, J, diagD = assembleK1(iter)
       K2, rhs2 = assembleK2(iter)
       K35, rhs35 = assembleK35(iter)
+      #K3, rhs3 = assembleK3(iter)
       for i in 1:4
         cd("..")
       end
 
       # Benchmarking
 
-      benchmarkK1  = @benchmark solveK1($K1, $rhs1, $rhsdx1, $J, $diagD)     samples=1 evals=1
-      benchmarkK2  = @benchmark solveK2($K2, $rhs2)                          samples=1 evals=1
-      benchmarkK35 = @benchmark solveK35($K35, $rhs35)                       samples=1 evals=1
-      println(logfile, "K35 size: $(size(K35)[1]) rows, $(size(K35)[2]) cols, $(nnz(K35)) NNZ's K1/K2: ")
-      println(logfile, "  K1 cholesky         = $(median(benchmarkK1))")
-      println(logfile, "  K2  ldlt            = $(median(benchmarkK2))")
-      println(logfile, "  K35 ldlt            = $(median(benchmarkK35))")
+      benchmarkK1  = @benchmark solveK1($K1, $rhs1, $rhsdx1, $J, $diagD)     samples=20 evals=5
+      benchmarkK2  = @benchmark solveK2($K2, $rhs2)                          samples=20 evals=5
+      benchmarkK35 = @benchmark solveK35($K35, $rhs35)                       samples=20 evals=5
+      benchmarkK35LU = @benchmark solveK35LU($K35, $rhs35)                       samples=20 evals=5
+      println(logfile, " $p & $(nnz(K35)) & $(median(benchmarkK1)) & $(median(benchmarkK2)) &
+      $(median(benchmarkK35)) & $(median(benchmarkK35LU)) \\")
 
       # Testing if all assembles and solutions are correct
 

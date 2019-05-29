@@ -44,7 +44,7 @@ function assembleK1(iter, quadratic = false)
   if quadratic
     K = J*temp2*J' + delta*sparse(Matrix(1.0I, m, m))
   else
-    K = J*temp2*J'
+    K = J*temp2*J' + delta*sparse(Matrix(1.0I, m, m))
   end
   ns = size(Z, 1)       # number of slack variables
   nn = size(H, 1) - ns  # number of original variables
@@ -72,7 +72,7 @@ function assembleK2(iter, quadratic = false)
           J  -delta * sparse(Matrix(1.0I, m, m)) ]
   else
     K = [ rho*sparse(Matrix(1.0I, n, n)) + invXZ    J';
-          J                              sparse(zeros(m, m)) ]
+          J                              -delta * sparse(Matrix(1.0I, m, m)) ]
   end
   # reducing the rhs:
   rhs[1:nn+ns] = rhs[1:nn+ns] - Z' * (X \ rhs[nn+ns+m+1:nn+ns+m+ns])
@@ -100,9 +100,34 @@ function assembleK35(iter, quadratic = false)
           -Z                 spzeros(ns, m)      -X            ]
   else
     K = [ rho*sparse(Matrix(1.0I, n, n))      J'        -Z'     ;
-          J           spzeros(m, m)               spzeros(m, ns);
+          J           -delta * sparse(Matrix(1.0I, m, m))               spzeros(m, ns);
           -Z          spzeros(ns, m)      -X            ]
   end
+
+  return K, rhs
+end
+
+function assembleK3(iter, quadratic = false)
+  (rho, delta, H, J, Z, X, rhs) = read_blocks(iter)
+
+  II = copy(Z)
+  II.nzval .= 1.
+  II = II'
+
+  (m, n) = size(J)
+  ns = size(Z, 1)
+  n = size(H, 1) - ns
+
+  if quadratic
+      K = [ H + tril(H,-1)'      J'                -II             ;
+            J                   -delta * sparse(Matrix(1.0I, m, m))   spzeros(m, ns) ;
+            Z.^2                 spzeros(ns, m)      X             ]
+  else
+      K = [ rho*sparse(Matrix(1.0I, n, n))      J'                -II             ;
+            J                   -delta * sparse(Matrix(1.0I, m, m))   spzeros(m, ns) ;
+            Z.^2                 spzeros(ns, m)      X             ]
+  end
+  rhs[end-ns+1:end] = Z[:, n+1:end] * rhs[end-ns+1:end]
 
   return K, rhs
 end
