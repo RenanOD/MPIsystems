@@ -1,9 +1,4 @@
-using LinearAlgebra
-using SparseArrays
-using Printf
-using CSV
-using MatrixMarket
-using DelimitedFiles
+using LinearAlgebra, SparseArrays, Printf, CSV, MatrixMarket, DelimitedFiles
 
 function read_blocks(iter)
   rd = CSV.read(@sprintf("rho_delta_%d.dat", iter), datarow = 1)[1]

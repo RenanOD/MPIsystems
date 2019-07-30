@@ -21,14 +21,6 @@ problems = [
   #"dualc2";
   #"dualc5";
   #"dualc8";
-  "aug2d";
-  "aug2dc";
-  "aug2dcqp";
-  "aug2dqp";
-  "aug3d";
-  "aug3dc";
-  "aug3dcqp";
-  "aug3dqp";
   #"cvxqp1_s";
   #"cvxqp1_m";
   "cvxqp1_l";
